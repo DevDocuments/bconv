@@ -59,28 +59,34 @@ static un atoi(const char *str, const uint8_t base) {
     return value;
 }
 
+static uint8_t n_digits(un value, const uint8_t base) {
+    uint8_t n = 1;
+    while (value >= base) {
+        value /= base;
+        n++;
+    }
+    return n;
+}
+
 static char *itoa(un value, const uint8_t base) {
     if ((base < 2) || (base > 36))
         return "";
-    char *rc = NULL;
+    char *rc = malloc((sizeof (char)) * (n_digits(value, base) + 1));
     {
-        size_t rc_len = 0;
+        char *rc_p = rc;
         do {
-            /* TODO: Instead of using `realloc`, calculate the number of digits
-             * and allocate once. */
-            rc = realloc(rc, (sizeof (char)) * (++rc_len + 1));
-            rc[rc_len - 1] =
+            *(rc_p++) =
                 "ZYXWVUTSRQPONMLKJIHGFEDCBA9876543210"
                 "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 [35 + value % base];
             value /= base;
         } while (value);
-        rc[rc_len--] = '\0';
-        size_t low = 0;
-        while (low < rc_len) {
-            const char tmp = rc[low];
-            rc[low++] = rc[rc_len];
-            rc[rc_len--] = tmp;
+        *(rc_p--) = '\0';
+        char *low = rc;
+        while (low < rc_p) {
+            const char tmp = *low;
+            *(low++) = *rc_p;
+            *(rc_p--) = tmp;
         }
     }
     return rc;
