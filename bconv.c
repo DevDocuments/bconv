@@ -26,32 +26,32 @@ static un atoi(const char *str, const uint8_t base) {
           case '7':           value +=  7; break;
           case '8':           value +=  8; break;
           case '9':           value +=  9; break;
-          case 'a': case 'A': value += 10; break;
-          case 'b': case 'B': value += 11; break;
-          case 'c': case 'C': value += 12; break;
-          case 'd': case 'D': value += 13; break;
-          case 'e': case 'E': value += 14; break;
-          case 'f': case 'F': value += 15; break;
-          case 'g': case 'G': value += 16; break;
-          case 'h': case 'H': value += 17; break;
-          case 'i': case 'I': value += 18; break;
-          case 'j': case 'J': value += 19; break;
-          case 'k': case 'K': value += 20; break;
-          case 'l': case 'L': value += 21; break;
-          case 'm': case 'M': value += 22; break;
-          case 'n': case 'N': value += 23; break;
-          case 'o': case 'O': value += 24; break;
-          case 'p': case 'P': value += 25; break;
-          case 'q': case 'Q': value += 26; break;
-          case 'r': case 'R': value += 27; break;
-          case 's': case 'S': value += 28; break;
-          case 't': case 'T': value += 29; break;
-          case 'u': case 'U': value += 30; break;
-          case 'v': case 'V': value += 31; break;
-          case 'w': case 'W': value += 32; break;
-          case 'x': case 'X': value += 33; break;
-          case 'y': case 'Y': value += 34; break;
-          case 'z': case 'Z': value += 35; break;
+          case 'A': case 'a': value += 10; break;
+          case 'B': case 'b': value += 11; break;
+          case 'C': case 'c': value += 12; break;
+          case 'D': case 'd': value += 13; break;
+          case 'E': case 'e': value += 14; break;
+          case 'F': case 'f': value += 15; break;
+          case 'G': case 'g': value += 16; break;
+          case 'H': case 'h': value += 17; break;
+          case 'I': case 'i': value += 18; break;
+          case 'J': case 'j': value += 19; break;
+          case 'K': case 'k': value += 20; break;
+          case 'L': case 'l': value += 21; break;
+          case 'M': case 'm': value += 22; break;
+          case 'N': case 'n': value += 23; break;
+          case 'O': case 'o': value += 24; break;
+          case 'P': case 'p': value += 25; break;
+          case 'Q': case 'q': value += 26; break;
+          case 'R': case 'r': value += 27; break;
+          case 'S': case 's': value += 28; break;
+          case 'T': case 't': value += 29; break;
+          case 'U': case 'u': value += 30; break;
+          case 'V': case 'v': value += 31; break;
+          case 'W': case 'w': value += 32; break;
+          case 'X': case 'x': value += 33; break;
+          case 'Y': case 'y': value += 34; break;
+          case 'Z': case 'z': value += 35; break;
           default: return 0;
         }
         str++;
@@ -92,16 +92,18 @@ static char *itoa(un value, const uint8_t base) {
     return rc;
 }
 
-int main(int argc, char *argv[]) {
+int main(const int argc, const char *const argv[]) {
     pn = argv[0];
     uint8_t out_base = 10;
     un value;
     if (argc > 1) {
         uint8_t in_base = 10;
-        char *r_number = NULL;
+        const char *r_number = NULL;
         for (int i = 1; i < argc; i++) {
             if (!strcmp(argv[i], "--help")) {
-                printf("USAGE:\n\t%s <number> -i <in_base> -o <out_base>\n",
+                printf("USAGE:\n"
+                       "\t%s <number> [-i <in_base>] [-o <out_base>]\n"
+                       "Both <in_base> and <out_base> default to 10.\n",
                        argv[0]);
                 return 0;
             }
