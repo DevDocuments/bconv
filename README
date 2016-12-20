@@ -1,1 +1,9 @@
 This is a simple utility for converting numbers between bases.
+
+It's actually just around for convenience:
+
+The `atoi` and `itoa` functions are as simple as possible, and can be
+used in other projects.
+
+The only security concern is integer overflow, but you can set the bit
+width of the functions to whatever you want.
